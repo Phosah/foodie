@@ -6,7 +6,7 @@ class TabIndexController extends GetxController {
 
   int get tabIndex => _tabIndex.value;
 
-  set SetTabIndex(int newValue) {
+  set setTabIndex(int newValue) {
     _tabIndex.value = newValue;
   }
 }
