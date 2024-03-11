@@ -14,28 +14,58 @@ class CustomAppBar extends StatelessWidget {
       height: 110.h,
       width: width,
       color: kOffWhite,
-      child:  Container(
+      child: Container(
         margin: EdgeInsets.only(top: 20.h),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-             CircleAvatar(
-               radius: 25.r,
-               backgroundColor: kSecondary,
-               // backgroundImage: NetworkImage(""),
-             ),
-            Padding(padding: EdgeInsets.only(bottom: 6.h, left: 8.w), child:  Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                ReusableText(text: "Deliver to", style: appStyle(13, kSecondary, FontWeight.w600)),
-                SizedBox(width: width * 0.65, child: Text('This is a random string', overflow: TextOverflow.ellipsis, style: appStyle(11, kGrayLight, FontWeight.normal),)),
+                CircleAvatar(
+                  radius: 20.r,
+                  backgroundColor: kSecondary,
+                  // backgroundImage: NetworkImage(""),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 6.h, left: 8.w),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ReusableText(
+                          text: "Deliver to",
+                          style: appStyle(13, kSecondary, FontWeight.w600)),
+                      SizedBox(
+                          width: width * 0.65,
+                          child: Text(
+                            'This is a random string',
+                            overflow: TextOverflow.ellipsis,
+                            style: appStyle(11, kGrayLight, FontWeight.normal),
+                          )),
+                    ],
+                  ),
+                ),
               ],
-            ),),
-            const Text('☀️', style: TextStyle(fontSize: 35),)
+            ),
+            Text(getTimeOfDay(), style: const TextStyle(fontSize: 35))
           ],
         ),
       ),
     );
+  }
+
+  String getTimeOfDay() {
+    DateTime now = DateTime.now();
+    int hour = now.hour;
+
+    if (hour >= 0 && hour < 12) {
+      return '🌞';
+    } else if (hour >= 12 && hour < 16) {
+      return '⛅';
+    } else {
+      return '🌙';
+    }
   }
 }
